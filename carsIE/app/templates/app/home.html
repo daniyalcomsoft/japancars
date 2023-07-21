@@ -1,0 +1,747 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Home{% endblock title %}
+
+{% block banner_slider %}
+<!--Banner Slider-->
+<!-- <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="{% static 'app/images/banner/b1.jpg' %}" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'app/images/banner/b2.jpg' %}" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'app/images/banner/b3.jpg' %}" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'app/images/banner/b4.jpg' %}" class="d-block w-100" alt="...">
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#" role="button" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </a>
+</div> -->
+<!-- End Banner Slider -->
+{% endblock banner_slider %}
+
+{% block searchbar %}
+
+<!-- <div class="container-fluid bannerimg">
+  <img class="img-fluid img-responsive" src="{% static 'app/images/banner.jpg' %}" alt="">
+</div> -->
+<div class="container-fluid mstop ">
+  <div class="container">
+    {% for mh in mhead %}
+    <div class="row">
+      <div class="col-md-2 my-1 left">
+        <p>{{mh.purpose}}</p>
+      </div>
+      <div class="col-md-2 my-1 left">
+        <p>{{mh.stock}}</p>
+      </div>
+      <div class="col-md-2 my-1 left">
+        <p>{{mh.todaystock}}</p>
+      </div>
+      <div class="col-md-3 my-1 left">
+        <p>Japan Time {{datetimejapan}}</p>
+      </div>
+      <div class="col-md-1 col-lg-1 col-sm-12 my-1 left">
+        <div class="dropdown">
+          <button class="btn btn-sm dropdown-toggle lightpink" type="button" id="dropdownMenuButton1"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            Country
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li><a class="dropdown-item" href="#">{{mh.country}}</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-1 col-lg-1 col-sm-12 my-1 left">
+        <div class="dropdown">
+          <button class="btn btn-sm dropdown-toggle lightpink" type="button" id="dropdownMenuButton1"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            Currency
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li><a class="dropdown-item" href="#">{{mh.currency}}</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-1 col-lg-1 col-sm-12 my-1 left">
+        <div class="dropdown">
+          <button class="btn btn-sm dropdown-toggle lightpink" type="button" id="dropdownMenuButton1"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            Language
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li><a class="dropdown-item" href="#">{{mh.language}}</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<div class="container-fluid msearchbar">
+  <div class="row">
+    <div class="col-md-2 col-sm-12 my-3 text-center">
+      <a href=""><img class="img-fluid img-responsive" src="{% static 'app/images/kbm.jpg' %}" height="90px"
+          width="150px" alt=""></a>
+    </div>
+
+    <div class="col-md-8 col-sm-12 my-4">
+      <div class="row">
+        <form method="get" action="/search" class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="Search for Used Car" aria-label="Search"
+            name="query" id="query">
+          <button class="btn btn-danger" type="submit"><i class="fa fa-search"></i></button>
+        </form>
+      </div>
+
+      <div class="row mt-2">
+        <div class="col-md-2"></div>
+        <div class="col-md-2 col-sm-12">
+
+          <div class="dropdown">
+            <button class="btn btn-sm btn-secondary dropdown-toggle darkblue" type="button" id="dropdownMenuButton1"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              Used Cars
+            </button>
+
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              {% for company in companies %}
+              <li><a class="dropdown-item" href="#"><img src="{{company.CompanyLogo.url}}" width="20px" height="20px"
+                    alt="">&nbsp;{{company.CompanyName}}</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+
+        </div>
+        <div class="col-md-2 col-sm-12">
+          <div class="dropdown">
+            <button class="btn btn-sm btn-secondary dropdown-toggle darkblue" type="button" id="dropdownMenuButton1"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              Vehicle Type
+            </button>
+
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              {% for ty in type %}
+              <li><a class="dropdown-item" href="#"> &nbsp;{{ty.TypeName}}</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-2 col-sm-12">
+
+          <div class="dropdown">
+            <button class="btn btn-sm btn-secondary dropdown-toggle darkblue" type="button" id="dropdownMenuButton1"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              Local Service
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              {% for con in cont %}
+              <li>
+                <a class="dropdown-item" href="#"><img src="{{con.flagImage.url}}" width="20px" height="20px"
+                    alt="">&nbsp;{{con.CountryName}}</a>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-2 col-sm-12">
+          <div class="dropdown">
+            <button class="btn btn-sm btn-secondary dropdown-toggle darkblue" type="button" id="dropdownMenuButton1"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              Price Range
+            </button>
+
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              {% for pr in pricerange %}
+              <li><a class="dropdown-item" href="#"> &nbsp;{{pr.Price}}</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <button type="button" class="btn btn-sm btn-secondary darkblue"><a href="/searchdd" style="color: white;">All
+              Vehicles</a></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-2 col-sm-12 my-4">
+      <div class="row">
+        <div class="col-md-6">
+          <p><i class="fa fa-heart" aria-hidden="true"></i>&nbsp;<b>Favorites</b></p>
+        </div>
+        <div class="col-md-6">
+          <p><i class="fa fa-user" aria-hidden="true"></i>&nbsp;<a href="/allreview"><b>Reviews</b></a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="container-fluid dddd">
+
+  <div class="container-fluid m-3 text-left">
+    {% for s in ships %}
+    <div class="row">
+      <div class="col-md-2"></div>
+
+      <div class="col-md-8">
+        <p>
+          <a style="font-weight: bold;" class="" data-bs-toggle="collapse" href="#collapseExample" role="button"
+            aria-expanded="false" aria-controls="collapseExample">
+            {{s.Heading}} &nbsp;&nbsp;&nbsp;&nbsp;{{s.Date}} &nbsp;&nbsp;<i class="fa fa-arrow-down"
+              aria-hidden="true"></i>
+          </a>
+        </p>
+        <div class="collapse" id="collapseExample">
+          <div class="card card-body">
+            {{s.Description}}
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-2"></div>
+    </div>
+    {% endfor %}
+
+    {% for so in saleso %}
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-8">
+        <p>
+          <a style="font-weight: bold;" class="" data-bs-toggle="collapse" href="#collapseExamplee" role="button"
+            aria-expanded="false" aria-controls="collapseExample">
+            {{so.Heading}} &nbsp;&nbsp;<i class="fa fa-arrow-down" aria-hidden="true"></i>
+          </a>
+        </p>
+        <div class="collapse" id="collapseExamplee">
+          <div class="card card-body">
+            <div class="row">
+              <div class="col-md-2">
+                <img src="{{so.Image.url}}" width="100px" height="100px" alt="">
+              </div>
+              <div class="col-md-10">
+                <p> {{so.Description}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+    {% endfor %}
+  </div>
+
+</div>
+<div class="container text-left">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <p class=""><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp;&nbsp;NOTICE: Beware of Fake KBM
+        JAPAN Information! (Read more) - Updated Oct 30, 2020</p>
+    </div>
+    <div class="col-md-2"></div>
+
+  </div>
+</div>
+
+{% endblock searchbar %}
+{% block chainsearchbar %}
+<div class="container mb-3" id="app">
+
+  <div class="row">
+
+    <div class="col-md-2 col-lg-2 col-sm-12 center danione">
+      <a href="/searchdd"><img class="img-responsive stockimg" src="{% static 'app/images/stock.jpeg' %}" alt="">
+        <div class="centered">View Stock</div>
+      </a>
+
+    </div>
+
+    <div class="col-md-8 mainengine">
+
+      <div class="row">
+        <div class="col-md-12">
+          <h6 style="margin-top:20px; color:white;">&nbsp;&nbsp;<i class="fa fa-search"
+              aria-hidden="true"></i>&nbsp;&nbsp;SEARCH FOR CARS</h6>
+          <hr style="background:white; border:3px solid white;">
+        </div>
+      </div>
+
+      <form method="post" id="indexForm" action="/searchdd" data-cars-url="{% url 'ajax_load_cars' %}">
+        {% csrf_token %}
+        <div class="col-md-12">
+          <div class="row">
+
+            <div class=" col-md-3 col-sm-12 col-lg-3 text-left">
+              <label for="" class="white">Make</label>
+              <select class="form-select" id="companyddl" name="company_ddl" class="searchengine dp-list">
+                <option disabled selected="true" value="">--Select Make--</option>
+                {% for company in companies %}
+                <option value="{{company.CompanyID}}">{{company.CompanyName}}</option>
+                {% endfor %}
+              </select>
+            </div>
+
+            <div class=" col-md-3 col-sm-12 col-lg-3 text-left">
+              <label for="" class="white">Model</label>
+              <select class="form-select" id="carddl" name="car_name" class="searchengine dp-list">
+                <option disabled selected="true" value="">--Select Model--</option>
+              </select>
+            </div>
+
+            <div class="col-md-3 col-sm-12 col-lg-3 text-left">
+              <label for="" class="white">From Year</label>
+              <select class="form-select" name="from_date" id="fromdate" class="dp-list">
+                <option disabled selected="true" value="">--select Year--</option>
+                {% for mfd in manfd %}
+                <option value="{{mfd.ManufacturingDate.year}}-1-1">{{mfd.ManufacturingDate|date:'Y'}}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="col-md-3 col-sm-12 col-lg-3 text-left">
+              <label for="" class="white">To Year</label>
+              <select class="form-select" name="to_date" id="todate" class="dp-list">
+                <option disabled selected="true" value="">--select Year--</option>
+                {% for mfd in manfd %}
+                <option value="{{mfd.ManufacturingDate.year}}-1-1">{{mfd.ManufacturingDate|date:'Y'}}</option>
+                {% endfor %}
+              </select>
+            </div>
+
+
+          </div>
+
+        </div>
+        <div class="col-md-12 ">
+          <div class="row">
+
+            <div class="dropdown my-2 col-md-3 col-sm-12 text-left">
+              <label for="" class="white">Type </label>
+              <select class="form-select" name="cartype" id="typ" class="searchengine dp-list"
+                style="padding-right: 7px; margin-left: 3px;">
+                <option disabled selected="true" value="">--Select Type--</option>
+                {% for ty in type %}
+                <option value="{{ty.TypeID}}">{{ty.TypeName}}</option>
+                {% endfor %}
+              </select>
+            </div>
+
+            <div class="dropdown my-2 col-md-3 col-sm-12 text-left">
+              <label for="" class="white">Steering </label>
+              <select class="form-select" name="steeringname" id="steering" class="searchengine dp-list">
+                <option value="">--Select Steering--</option>
+                {% for str in steer %}
+                <option value="{{str.SteeringID}}">{{str.SteeringName}}</option>
+                {% endfor %}
+              </select>
+            </div>
+
+            <div class="col-md-3 my-2 col-md-3 col-sm-12 text-left">
+              <label for="" class="white">Deals</label>
+              <select class="form-select" name="" id="">
+                <option disabled selected="True" value="">--Select Deals--</option>
+                <option value="">Not Available For Now</option>
+              </select>
+            </div>
+
+            <div class=" col-md-3 my-2 col-md-3 col-sm-12 text-left">
+              <label class="white">Search Here</label>
+              <button name="search" id="search" class="btn sbx" type="submit" value="search"><i
+                  class="fa fa-search"></i>&nbsp;&nbsp;Search Here&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+            </div>
+
+          </div>
+        </div>
+
+      </form>
+
+    </div>
+
+    <div class="col-md-2 col-lg-2 col-sm-12 center danitwo">
+      <a href="/searchdd"><img class="img-responsive stockimg" src="{% static 'app/images/stock.jpeg' %}" alt="">
+        <div class="centered">View Vehicles</div>
+      </a>
+
+    </div>
+  </div>
+</div>
+
+
+
+{% endblock chainsearchbar %}
+
+{% block livesale %}
+<!-- Live Sale Section -->
+<!-- <div class="container">
+  <div class="row text-center p-5 text-white border-bottom shadow">
+    <h1>SALE IS LIVE NOW</h1>
+    <span>5% Instant Discount on Axis Bank Credit and Debit Card</span>
+    <small class="fw-lighter">Term and Condition Applied (For details visit Bank's official Website)</small>
+  </div>
+</div> -->
+<!-- End Live Sale Section -->
+{% endblock livesale %}
+
+{% block main-content %}
+<!-- 1st Product Slider -->
+<div class="container-fluid">
+
+  <div class="row">
+    <div class="col-md-2">
+      <div class="list-group">
+        <a href="" class="list-group-item list-group-item-action daniyal" aria-current="true">Shop by Make</a>
+        {% for company in companies %}
+        <a href="{% url 'search' %}?com={{company.CompanyID}}" class="list-group-item list-group-item-action"
+          aria-current="true">
+          <img src="{{company.CompanyLogo.url}}" alt="" height="25px" width="25px">
+          {{company.CompanyName}} {{company.car.counter}}
+          (<span style="font-size:3mm;">{{company.CompanyStock}}</span>)
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="col-md-8">
+      <!-- Slider 1 -->
+      <div class="owl-carousel" id="slider1">
+        {% for car in carss %}
+        <a href="{% url 'product-detail' car.CarID %}" class="btn">
+          <div class="item">
+            <img class="slider1 img-responsive col-sm-12" src="{{car.CarImage.url}}" alt="">
+            <div class="row">
+              <div class="col-md-12"><span class="bosco1">{{car.CarName}}</span></div>
+              <div class="col-md-12"><span class="bosco2">Vehicle Price :</span></div>
+              <div class="col-md-12"><span class="bosco3">FOB$: {{car.Price}}</span></div>
+            </div>
+          </div>
+        </a>
+
+        {% endfor %}
+      </div>
+      <div class="owl-carousel" id="slider1">
+        {% for car in carss %}
+        <a href="{% url 'product-detail' car.CarID %}" class="btn">
+          <div class="item">
+            <img class="slider1 img-responsive col-sm-12" src="{{car.CarImage.url}}" alt="">
+            <div class="row">
+              <div class="col-md-12"><span class="bosco1">{{car.CarName}}</span></div>
+              <div class="col-md-12"><span class="bosco2">Vehicle Price :</span></div>
+              <div class="col-md-12"><span class="bosco3">FOB$: {{car.Price}}</span></div>
+            </div>
+          </div>
+        </a>
+
+        {% endfor %}
+      </div>
+
+    </div>
+
+    <div class="col-md-2 mt-4">
+      <div class="row">
+        <!-- <img src="{% static 'app/images/create_account.png' %}" alt=""> -->
+
+        <!-- <div class="container mt-3">
+          <div class="row">
+            <div class="fb-like" data-href="http://www.kbmjapan.net/" data-width="" data-layout="button"
+              data-action="like" data-size="small" data-share="true"></div>
+          </div>
+        </div> -->
+
+
+        <div class="fb-page" data-href="https://www.facebook.com/exportJapneseCars/" data-tabs="timeline" data-width=""
+          data-height="" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false"
+          data-show-facepile="true">
+          <blockquote cite="https://www.facebook.com/exportJapneseCars/" class="fb-xfbml-parse-ignore"><a
+              href="https://www.facebook.com/exportJapneseCars/">KBM JAPAN</a></blockquote>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+  <div class="row">
+    <div class="col-md-2">
+      <div class="list-group">
+        <a href="" class="list-group-item list-group-item-action daniyal" aria-current="true">Shop by Price</a>
+        {% for pr in pricerange %}
+        <a href="{% url 'search' %}?pre={{pr.PriceID}}" class="list-group-item list-group-item-action"
+          aria-current="true">
+          {{pr.Price}}
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="col-md-8">
+      <div class="owl-carousel" id="slider1">
+        {% for car in carss %}
+        <a href="{% url 'product-detail' car.CarID %}" class="btn">
+          <div class="item">
+            <img class="slider1 img-responsive col-sm-12" src="{{car.CarImage.url}}" alt="">
+            <div class="row">
+              <div class="col-md-12"><span class="bosco1">{{car.CarName}}</span></div>
+              <div class="col-md-12"><span class="bosco2">Vehicle Price :</span></div>
+              <div class="col-md-12"><span class="bosco3">FOB$: {{car.Price}}</span></div>
+            </div>
+          </div>
+        </a>
+
+        {% endfor %}
+      </div>
+      <div class="owl-carousel" id="slider1">
+        {% for car in carss %}
+        <a href="{% url 'product-detail' car.CarID %}" class="btn">
+          <div class="item">
+            <img class="slider1 img-responsive col-sm-12" src="{{car.CarImage.url}}" alt="">
+            <div class="row">
+              <div class="col-md-12"><span class="bosco1">{{car.CarName}}</span></div>
+              <div class="col-md-12"><span class="bosco2">Vehicle Price :</span></div>
+              <div class="col-md-12"><span class="bosco3">FOB$: {{car.Price}}</span></div>
+            </div>
+          </div>
+        </a>
+
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="col-md-2 text-center my-3">
+      <div class="list-group">
+        <a href="" class="list-group-item list-group-item-action daniyal" aria-current="true">Shop by Country</a>
+        {% for co in cont %}
+        <a href="{% url 'search' %}?coo={{co.CountryID}}" class="list-group-item list-group-item-action"
+          aria-current="true">
+          {{co.CountryName}}&nbsp;&nbsp; <img src="{{co.flagImage.url}}" height="20px" width="30px" alt="">
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  <div class="row my-3">
+    <div class="col-md-2">
+      <div class="list-group">
+        <a href="" class="list-group-item list-group-item-action daniyal" aria-current="true">Shop by Discount</a>
+        {% for dis in discount %}
+        <a href="{% url 'search' %}?des={{dis.DiscountID}}" class="list-group-item list-group-item-action"
+          aria-current="true">
+          {{dis.Discount}}
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="col-md-8">
+      <div class="container">
+        <h3 style="font-weight:bold; color:#ce2127;">Customer Reviews and Rating</h3>
+        {% for re in rev|slice:"0:3" %}
+        <div
+          class="row no-gutters border rounded overflow-hidden flex-md-row my-4 shadow-sm h-md-250 position-relative">
+          <div class="col p-4 d-flex flex-column position-static">
+            <strong class="d-inline-block mb-2 text-primary">{{re.car}}</strong>
+            <h4 class="mb-0">{{re.ReviewHeading}}</h4>
+            <div class="mb-1 text-muted">{{re.UserName}}&nbsp;&nbsp;{{re.Date}}&nbsp; <spann
+                style="font-weight:bold; color:#ce2127;">(Verified Buyer)</span></div>
+            <p class="card-text mb-auto">{{re.Description}}</p>
+            <a href="#" class="stretched-link">Review On {{re.car}}</a>
+          </div>
+          <div class="col-auto d-none d-lg-block">
+            <!-- <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg"
+              preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail">
+              <title>Placeholder</title>
+              <rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef"
+                dy=".3em"></text>
+            </svg> -->
+            <img src="{{re.Image.url}}" width="200" height="200" alt="">
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="list-group">
+        <a href="" class="list-group-item list-group-item-action daniyal" aria-current="true">Shop by Type</a>
+        {% for typ in type %}
+        <a href="{% url 'search' %}?tape={{typ.TypeID}}" class="list-group-item list-group-item-action"
+          aria-current="true">
+          {{typ.TypeName}}
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <div class="row">
+        <div class="col-md-6">
+          <p>
+            <a class="" data-bs-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="false"
+              aria-controls="collapseExample">
+              How can I buy a car from Japan? <i class="fa fa-arrow-down" aria-hidden="true"></i>
+            </a>
+
+          </p>
+          <div class="collapse" id="collapseExample1">
+            <div class="card card-body">
+              Buying and importing a vehicle from Japan is easy with KBM JAPAN.
+              You can buy online via our website. If you're new to buying a vehicle from Japan,
+              rest assured that we will assist you with the purchase, shipping, and delivery processes.
+
+            </div>
+          </div>
+          <hr>
+        </div>
+        <div class="col-md-6">
+          <p>
+            <a class="" data-bs-toggle="collapse" href="#collapseExample22" role="button" aria-expanded="false"
+              aria-controls="collapseExample">
+              What are the best-selling cheap Japanese cars? <i class="fa fa-arrow-down" aria-hidden="true"></i>
+            </a>
+
+          </p>
+          <div class="collapse" id="collapseExample22">
+            <div class="card card-body">
+              Toyota currently makes the best-selling Japanese car because of their reputation for
+              durability and affordable prices. Please check our list of Toyota vehicles to see what
+              we currently have in stock.
+            </div>
+          </div>
+          <hr>
+        </div>
+        <div class="col-md-6">
+          <p>
+            <a class="" data-bs-toggle="collapse" href="#collapseExample33" role="button" aria-expanded="false"
+              aria-controls="collapseExample">
+              What car can I get for USD1,500 and below? <i class="fa fa-arrow-down" aria-hidden="true"></i>
+            </a>
+
+          </p>
+          <div class="collapse" id="collapseExample33">
+            <div class="card card-body">
+              There are a lot of affordable cars on our website including Toyota, Nissan, and Honda.
+              Please check our list of affordable vehicles to see what we currently have in stock.
+            </div>
+          </div>
+          <hr>
+        </div>
+        <div class="col-md-6">
+          <p>
+            <a class="" data-bs-toggle="collapse" href="#collapseExample44" role="button" aria-expanded="false"
+              aria-controls="collapseExample">
+              How do I pay for my car? <i class="fa fa-arrow-down" aria-hidden="true"></i>
+            </a>
+
+          </p>
+          <div class="collapse" id="collapseExample44">
+            <div class="card card-body">
+              Generally, we accept payments through bank wire transfer. For certain countries,
+              we also accept payments through our Local Offices, PayPal and Western Union.
+              Learn more by visiting our How to Pay page
+            </div>
+          </div>
+          <hr>
+        </div>
+      </div>
+
+
+
+    </div>
+  </div>
+
+  <div class="col-md-2"></div>
+
+</div>
+<div class="col-md-12 col-sm-12 col-lg-12 whatsapp">
+  <a href="https://wa.me/818095881305" target="_blank">
+    <img src="{% static 'app/images/whatsapp.png' %}" class="whatsappbutton" width="70px" style="border-radius: 50%;" alt="">
+  </a>
+</div>
+<!-- End 1st Product Slider -->
+
+<!-- Payment Info Section -->
+
+<!-- <div class="container my-5">
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="card mb-3">
+        <div class="card-body">
+          <img src="{% static 'app/images/payavail/cc.jpg' %}" alt="" srcset="" class="img-fluid">
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="card mb-3">
+        <div class="card-body">
+          <img src="{% static 'app/images/payavail/upi.jpg' %}" alt="" srcset="" class="img-fluid">
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="card mb-3">
+        <div class="card-body">
+          <img src="{% static 'app/images/payavail/nb.jpg' %}" alt="" srcset="" class="img-fluid">
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="card mb-3">
+        <div class="card-body">
+          <img src="{% static 'app/images/payavail/bj.jpg' %}" alt="" srcset="" class="img-fluid">
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<!-- End Payment Info Section -->
+
+<!-- 2nd Product Slider -->
+
+<!-- <div class="mx-3">
+  <h2>Trending Deals</h2>
+  <div class="owl-carousel" id="slider2">
+    <div class="item"><img src="{% static 'app/images/product/12.jpg' %}" alt="" height="200px"><span
+        class="fw-bold">Product 1</span><br><span class="fs-5">Rs. 500</span></div>
+    <div class="item"><img src="{% static 'app/images/product/11.jpg' %}" alt="" height="200px"><span
+        class="fw-bold">Product 2</span><br><span class="fs-5">Rs. 300</span></div>
+    <div class="item"><img src="{% static 'app/images/product/10.jpg' %}" alt="" height="200px"><span
+        class="fw-bold">Product 3</span><br><span class="fs-5">Rs. 100</span></div>
+    <div class="item"><img src="{% static 'app/images/product/9.jpg' %}" alt="" height="200px"><span
+        class="fw-bold">Product 4</span><br><span class="fs-5">Rs. 700</span></div>
+    <div class="item"><img src="{% static 'app/images/product/8.jpg' %}" alt="" height="200px"><span
+        class="fw-bold">Product 5</span><br><span class="fs-5">Rs. 500</span></div>
+    <div class="item"><img src="{% static 'app/images/product/11.jpg' %}" alt="" height="200px"><span
+        class="fw-bold">Product 6</span><br><span class="fs-5">Rs. 400</span></div>
+    <div class="item"><img src="{% static 'app/images/product/5.jpg' %}" alt="" height="200px"><span
+        class="fw-bold">Product 7</span><br><span class="fs-5">Rs. 500</span></div>
+    <div class="item"><img src="{% static 'app/images/product/11.jpg' %}" alt="" height="200px"><span
+        class="fw-bold">Product 8</span><br><span class="fs-5">Rs. 300</span></div>
+    <div class="item"><img src="{% static 'app/images/product/12.jpg' %}" alt="" height="200px"><span
+        class="fw-bold">Product 9</span><br><span class="fs-5">Rs. 600</span></div>
+    <div class="item"><img src="{% static 'app/images/product/7.jpg' %}" alt="" height="200px"><span
+        class="fw-bold">Product 10</span><br><span class="fs-5">Rs. 900</span></div>
+    <div class="item"><img src="{% static 'app/images/product/6.jpg' %}" alt="" height="200px"><span
+        class="fw-bold">Product 11</span><br><span class="fs-5">Rs. 100</span></div>
+    <div class="item"><img src="{% static 'app/images/product/10.jpg' %}" alt="" height="200px"><span
+        class="fw-bold">Product 12</span><br><span class="fs-5">Rs. 200</span></div>
+  </div>
+</div> -->
+
+<!-- End 2nd Product Slider -->
+{% endblock main-content %}

@@ -1,0 +1,146 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Home{% endblock title %}
+
+
+{% block main-content %}
+
+
+
+<!-- <div class="container my-3">
+    <h2>Search Result by KBM JAPAB</h2>
+
+    {% if searchresult|length < 1 %} <p>
+        No Search Results
+        </p>
+        <b>Your search did not match any documents</b> <br>
+        Suggestion : <br>
+        <ul>
+            <li>Make sure that all words are spelled correctly</li>
+            <li>Try different keywords.</li>
+            <li>Try more general keywords.</li>
+            <li>Try fewer keywords.</li>
+        </ul>        
+    {% endif %}        
+</div> -->
+
+
+
+{% for cars in carForm %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 mt-3">
+            <div class="card">
+                <div class="card-horizontal row">
+                    <div class="img-square-wrapper col-md-4">
+                        <!-- <img class="img-fluid" height="400px" width="400px" src="{{cars.CarImage.url}}"
+                            alt="Card image cap"> -->
+                            <div class="row daniyal">
+                                <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                                  <div class="carousel-inner">
+                                    {% for pi in cars.carimage_set.all %}
+                                    <div class="carousel-item {% if forloop.counter0 == 0%} active {% endif %} ">
+                                      <img src="{{pi.CarImage.url}}"  class="d-block w-100" height="300" alt="...">
+                                    </div>
+                                    {% endfor %}
+                                  </div>
+                                  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="false"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                  </button>
+                                  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="false"></span>
+                                    <span class="visually-hidden">Next</span>
+                                  </button>
+                                </div>
+                              </div>
+                              <div class="row">
+                                {% for pi in cars.carimage_set.all %}
+    
+                                <div class="col-md-4 p-3">
+                                    <a href="{{pi.CarImage.url}}" target="_blank">
+                                        <img src="{{pi.CarImage.url}}" class="img-fluid"
+                                            style="height:100px; object-fit: contain; border: 1px solid #ce2127; min-width: 100%;" alt="">
+                                    </a>
+                                </div>
+    
+    
+                                {% endfor %}
+                            </div>
+                    </div>
+                    <div class="card-body col-md-8">                         
+                            <div class="row">
+                                <div class="col-md-6 btop">{{cars.CarName}}</div>
+                                <div class="col-md-3 btop"></div>
+                                <div class="col-md-3 bop"> Price: <span class=" carspec">{{cars.Price}}</span> <hr> Total Price: <span class=" carspec">{{cars.TotalPrice}}</span></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2 bleft">Mileage <br> <span class="span">{{cars.Mileage}}</span></div>
+                                <div class="col-md-2 bleft">Year. <br> <span class="span">{{cars.mfdate}}</span></div>
+                                <div class="col-md-2 bleft">Engine. <br> <span class="span">{{cars.EngineSize}}</span></div> 
+                                <div class="col-md-2 bleft">Transmission. <br> <span class="span">{{cars.Transmission}}</span></div> 
+                                <div class="col-md-2 bleft">Location. <br> <span class="span">{{cars.Location}}</span></div> 
+                                <div class="col-md-6"></div>
+                            </div>
+
+                        <div class="row table-responsive" style="margin:10px !important;">                                                                                                                                                                                                                                            
+                            <table class="table-detailed-spec table-responsive table-bordered col-md-10 table">
+                                <tbody>
+                                    <tr>
+                                        <td class=" carspec">CarName</td>
+                                        <td class="">{{cars.CarName}}</td>
+                                        <td class=" carspec">Car Type</td>
+                                        <td class="">{{cars.type}}</td>
+                                        <td class=" carspec">Ref No.</td>
+                                        <td class="">{{cars.RefNo}}</td>
+                                        <td class="carspec">Chassis No</td>
+                                        <td class="">{{cars.ChassisNo}}</td>
+                                        <td class=" carspec">Model Code</td>
+                                        <td class="">{{cars.ModelCode}}</td>
+                                        <td class=" carspec">Engine Size</td>
+                                        <td class="">{{cars.EngineSize}}</td>
+                                        <td class=" carspec">Car Location</td>
+                                        <td class="">{{cars.Location}}</td>
+                                        <td class=" carspec">Car Version</td>
+                                        <td class="">{{cars.Version}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class=" carspec">Drive</td>
+                                        <td class="">{{cars.Drive}}</td>
+                                        <td class="carspec">Transmission</td>
+                                        <td class="">{{cars.Transmission}}</td>
+                                        <td class=" carspec">Registration</td>
+                                        <td class="">{{cars.Registration}}</td>
+                                        <td class="carspec">Mileage</td>
+                                        <td class="">{{cars.Mileage}}</td>
+                                        <td class=" carspec">Engine Code</td>
+                                        <td class="">{{cars.EngineCode}}</td>
+                                        <td class=" carspec">Steering</td>
+                                        <td class="">{{cars.Steering}}</td>
+                                        <td class=" carspec">Ext Color</td>
+                                        <td class="">{{cars.ExtColor}}</td>
+                                        <td class="carspec ">Fuel</td>
+                                        <td class="">{{cars.Fuel}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- <h4 class="card-title">{{cars.CarName}}</h4>
+                                    <p class="card-text">{{cars.type}}</p> -->
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">Last updated few minutes ago</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+
+
+
+
+{% endblock main-content %}

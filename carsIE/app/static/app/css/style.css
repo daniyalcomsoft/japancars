@@ -1,0 +1,260 @@
+.owl-carousel .item{
+ /* border: 1px solid black; */
+ font-size: 24px;
+ text-align: center;
+ margin-top: 20px;;
+}
+
+.owl-next{
+ float:right;
+}
+.owl-prev{
+ float:left;
+}
+.owl-prev span{
+ font-size: 24px;
+ font-weight: bold;
+}
+.owl-next span{
+ font-size: 24px;
+ font-weight: bold;
+}
+
+.slider1{
+    height: 120px !important;
+    width: 180px !important;
+    border: 1px solid #f1892b;
+    padding: 2px;
+}
+
+.shadow{
+    background:#f1892b;
+}
+.bosco1{
+    font-size: 3.5mm;
+    float: left !important;
+    font-weight: 500;
+    color: blue;
+}
+
+.bosco2{
+    font-size: 3.5mm;
+    float: left !important;
+    color: black;
+}
+
+.bosco3{
+    font-size: 3.5mm;
+    float: left !important;
+    color: green;
+    margin-right: 30px;
+}
+
+.daniyal{
+    background:#ce2127;
+    color: white;
+    font-weight: bold;
+    margin-top: 22px;
+}
+
+.card-horizontal {
+    display: flex;
+    flex: 1 1 auto;
+}
+.searchengine{   
+    position: relative;
+}
+
+.white{
+    color:white;
+}
+
+.msearchbar{
+    background: white;
+    color: #000000;
+    margin-top: 0% !important;
+    margin-bottom: 0% !important;    
+}
+
+.mstop{
+    background:#ce2127;
+    color: white;
+    font-size: 14px;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.bannerimg{
+    margin: 0;
+    padding: 0;   
+    
+}
+.bannerimg img{
+    background-size: cover;
+    width: 1400px;
+}
+
+.dddd{
+    background: #fff2d9;
+    margin-top: -15px;
+}
+
+a{
+   color:#ce2127;   
+   text-decoration: none;
+}
+
+a:hover{
+    color:#ce2127;    
+    text-decoration: none;
+ }
+
+ .danione{
+     padding-bottom: 5px;
+     text-align: center; 
+     position: relative;    
+     color: white;   
+
+ }
+
+ .danitwo{
+    padding-top: 0px;
+    text-align: center; 
+    position: relative;    
+    color: white;   
+ }
+
+ .left{
+     text-align: left !important;
+     vertical-align: middle !important;
+ }
+
+ body {
+    overflow-x: hidden !important;
+}
+
+.gray{
+    color: #ce2127;
+    font-weight: bold;  
+}
+
+.stockimg{    
+    max-width: 100%;
+    height: 230px;
+}
+
+/* Centered text */
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: bold;
+    font-size: 28px;
+    color: #ce2127;
+  }
+
+  .lightpink{
+    background: #fff2d9;
+    color: black;
+  }
+
+  .lightpink:hover{
+    background: #fff2d9;
+    color: black;
+  }
+
+  .darkblue{
+    background: #292d6d;
+    color: white;
+  }
+
+  .darkblue:hover{
+    background: #292d6d;
+    color: white;
+  }
+
+  .mainengine{
+    background: #ce2127;
+    color: white;
+  }
+
+  .sbx{
+    background: #fff2d9;
+    color: black;
+  }
+
+
+  .carspec{
+      font-weight: bold;
+      color: #ce2127 !important;
+      background: #f2f2f2 !important;      
+  }
+  .btop{
+      font-size: 20px;
+      font-weight: bold;
+      color: #292d6d;
+      margin-top: 10px;
+      margin-bottom: 10px;
+  }
+  .bleft{
+      border-right: 0.1px solid #9495a1;
+      margin-top: 10px;
+      margin-bottom: 10px;
+  }
+  .span{
+      font-weight: bold;
+      font-size: 20px;
+      color: #292d6d;
+  }
+
+  .bop{
+    font-size: 15px;
+    font-weight: bold;
+    color: #292d6d;
+    margin: 0px !important;
+}
+
+.whatsapp{
+    position:fixed;
+    bottom:40px;
+    right:20px;
+    left:0px;
+    
+}
+
+.carousel-control-next, .carousel-control-prev {
+    opacity: 0 !important;
+}
+
+/* .carousel-control-next-icon, .carousel-control-prev-icon{
+    font-weight: bold !important;
+    color: black !important;
+} */
+
+
+.bg-dark {
+    background-color: #292d6d !important;
+}
+
+.table{
+    border-collapse: collapse; 
+    border: 1px solid black;   
+    /* background-color: #eaebf0 !important; */
+    color: black !important; 
+}
+.table td{
+    border: 1px solid white;
+}
+.table tr{
+    border: 1px solid white;
+}
+.table th{
+    border: 1px solid white;
+}
+.table tbody tr{
+    border: 1px solid white;
+}
+.table-bordered td {
+    border: 1px solid #dee2e6;
+}

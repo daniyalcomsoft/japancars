@@ -1,0 +1,275 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Vehicle Detail{% endblock title %}
+
+{% block searchbar %}
+
+<!-- <div class="container-fluid bannerimg">
+  <img class="img-fluid img-responsive" src="{% static 'app/images/banner.jpg' %}" alt="">
+</div> -->
+
+
+<div class="container-fluid msearchbar">
+  <div class="row">
+    <div class="col-md-2 col-sm-12 my-3 text-center">
+      <a href=""><img class="img-fluid img-responsive" src="{% static 'app/images/kbm.jpg' %}" height="90px"
+          width="150px" alt=""></a>
+    </div>
+
+    <div class="col-md-8 col-sm-12 my-4">
+      <div class="row">
+        <form method="get" action="/search" class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="Search for Used Car" aria-label="Search"
+            name="query" id="query">
+          <button class="btn btn-danger" type="submit"><i class="fa fa-search"></i></button>
+        </form>
+      </div>
+
+      <div class="row mt-2">
+        <div class="col-md-2"></div>
+        <div class="col-md-2">
+
+          <div class="dropdown">
+            <button class="btn btn-sm btn-secondary dropdown-toggle darkblue" type="button" id="dropdownMenuButton1"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              Used Cars
+            </button>
+
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              {% for company in companies %}
+              <li><a class="dropdown-item" href="#"><img src="{{company.CompanyLogo.url}}" width="20px" height="20px"
+                    alt="">&nbsp;{{company.CompanyName}}</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+
+        </div>
+        <div class="col-md-2">
+          <div class="dropdown">
+            <button class="btn btn-sm btn-secondary dropdown-toggle darkblue" type="button" id="dropdownMenuButton1"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              Vehicle Type
+            </button>
+
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              {% for ty in type %}
+              <li><a class="dropdown-item" href="#"> &nbsp;{{ty.TypeName}}</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-2">
+
+          <div class="dropdown">
+            <button class="btn btn-sm btn-secondary dropdown-toggle darkblue" type="button" id="dropdownMenuButton1"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              Local Service
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              {% for con in cont %}
+              <li>
+                <a class="dropdown-item" href="#"><img src="{{con.flagImage.url}}" width="20px" height="20px"
+                    alt="">&nbsp;{{con.CountryName}}</a>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="dropdown">
+            <button class="btn btn-sm btn-secondary dropdown-toggle darkblue" type="button" id="dropdownMenuButton1"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              Price Range
+            </button>
+
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              {% for pr in pricerange %}
+              <li><a class="dropdown-item" href="#"> &nbsp;{{pr.Price}}</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <button type="button" class="btn btn-sm btn-secondary darkblue"><a href="/searchdd" style="color: white;">All
+              Vehicles</a></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-2 col-sm-12 my-4">
+      <div class="row">
+        <div class="col-md-6">
+          <p><i class="fa fa-heart" aria-hidden="true"></i>&nbsp;<b>Favorites</b></p>
+        </div>
+        <div class="col-md-6">
+          <p><i class="fa fa-user" aria-hidden="true"></i>&nbsp;<a href="/allreview"><b>Reviews</b></a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<hr style="border: 1px solid black;">
+{% endblock searchbar %}
+
+{% block main-content %}
+<div class="container my-5">
+  <div class="row">
+
+    <div class="col-sm-6 text-center align-self-center">
+        <div class="row daniyal">
+          <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              {% for pi in pro.carimage_set.all %}
+              <div class="carousel-item {% if forloop.counter0 == 0%} active {% endif %} ">
+                <img src="{{pi.CarImage.url}}"  class="d-block w-100" height="300" alt="...">
+              </div>
+              {% endfor %}
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="false"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="false"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
+      <input type="hidden" id="{{pro.CarID}}">
+      <!-- {{pro.CarID}}  -->
+
+      <!-- <img src="{{pro.CarImage.url}}" alt="" class="img-fluid img-thumbnail"> -->
+
+      <div class="row">
+        {% for pi in pro.carimage_set.all %}
+        <div class="col-md-3 p-3">
+          <a href="{{pi.CarImage.url}}" target="_blank">
+            <img src="{{pi.CarImage.url}}" class="img-fluid"
+              style="height:100px; object-fit: contain; border: 1px solid #ce2127; min-width: 100%;" alt="">
+          </a>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="col-sm-5 offset-sm-1">
+      <div class="row">
+        <h4 style="color: #292d6d;">({{pro.mfdate}}) {{pro.CarName}}</h4>
+        <br>
+        <p style="color: #292d6d;">Ref No : {{pro.RefNo}}</p>
+        <hr>
+        <p>Price : &nbsp; &nbsp; <span style="color: #ce2127; font-size: 25px;"><b>{{pro.Price}}</b></span></p>
+        <hr>
+        <p>Total Price : &nbsp; &nbsp; <span style="color: #ce2127; font-size: 20px;">{{pro.TotalPrice}}</span>
+        </p>
+        <hr>
+      </div>
+      <div class="row">
+        <div class="col-md-12 col-lg-12">
+          <table class="table table-striped table-bordered">
+
+            <tbody>
+
+              <tr>
+                <th scope="row">1</th>
+                <td class="gray">Ref. No.</td>
+                <td>{{pro.RefNo}}</td>
+
+                <td class="gray">Mileage</td>
+                <td>{{pro.Mileage}}</td>
+              </tr>
+
+              <tr>
+                <th scope="row">2</th>
+                <td class="gray">Chassis No.</td>
+                <td>{{pro.ChassisNo}}</td>
+
+                <td class="gray">Engine Code</td>
+                <td>{{pro.EnigneCode}}</td>
+              </tr>
+
+              <tr>
+                <th scope="row">3</th>
+                <td class="gray">Model Code</td>
+                <td>{{pro.ModelCode}}</td>
+
+                <td class="gray">Steering</td>
+                <td>{{pro.steering}}</td>
+              </tr>
+
+              <tr>
+                <th scope="row">4</th>
+                <td class="gray">Engine Size</td>
+                <td>{{pro.EngineSize}}</td>
+
+                <td class="gray">Ext. Color</td>
+                <td>{{pro.ExtColor}}</td>
+              </tr>
+
+              <tr>
+                <th scope="row">5</th>
+                <td class="gray">Location</td>
+                <td>{{pro.Location}}</td>
+
+                <td class="gray">Fuel</td>
+                <td>{{pro.Fuel}}</td>
+
+              </tr>
+
+              <tr>
+                <th scope="row">6</th>
+                <td class="gray">Version/Class.</td>
+                <td>{{pro.Version}}</td>
+
+                <td class="gray">Seats</td>
+                <td>{{pro.Seats}}</td>
+              </tr>
+
+              <tr>
+                <th scope="row">7</th>
+                <td class="gray">Drive</td>
+                <td>{{pro.Drive}}</td>
+
+                <td class="gray">Doors</td>
+                <td>{{pro.Door}}</td>
+              </tr>
+
+              <tr>
+                <th scope="row">8</th>
+                <td class="gray">Transmission</td>
+                <td>{{pro.Transmission}}</td>
+
+                <td class="gray">M3</td>
+                <td>{{pro.M3}}</td>
+              </tr>
+
+              <tr>
+                <th scope="row">9</th>
+                <td class="gray">Manufacture<br>Year/month</td>
+                <td>{{pro.mfdate}}</td>
+
+                <td class="gray">Dimension</td>
+                <td>{{pro.Dimensions}}</td>
+              </tr>
+
+              <tr>
+                <th scope="row">10</th>
+                <td class="gray">Weight</td>
+                <td>{{pro.Weight}}</td>
+
+                <td class="gray">Max.Cap</td>
+                <td>{{pro.MaxCap}}</td>
+              </tr>
+
+            </tbody>
+
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+{% endblock main-content %}
